@@ -1,0 +1,44 @@
+# ---- Exercises
+{
+  exercise(id: 1) {
+    title
+    description
+    language {
+      name
+    }
+    owner {
+      name
+    }
+    buyers {
+      name
+    }
+    discipline {
+      name
+    }
+    curriculum {
+      name
+    }
+    minimum_age
+    maximum_age
+    price
+    exerciseset_image
+    questionsCount
+    maxduration
+    skillsCount
+    questions {
+      difficultylevel
+      mIntime
+      maxtime
+      size
+      hInt
+      skill {
+        name
+      }
+      skillcategory {
+        name
+      }
+
+      json_details
+    }
+  }
+}

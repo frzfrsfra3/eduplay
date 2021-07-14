@@ -1,0 +1,357 @@
+# users, school, avatar_accessories, avatars, badges, user_badges, userinterest, role_user, roles,
+# notification_actions, pending tasks, plan_options, plans, useractivitylogs, login_activities, activities
+# ------------------------------------------------------------------------------------------------
+# ## Table users
+# ------------------------------------------------------------------------------------------------
+type User {
+  id: ID!
+  name: String
+  email: String
+  roles: [Role] @belongsToMany
+  school: School @belongsTo         #---------------- school_id: Int
+  parent: User @belongsTo           #---------------- parent_id: Int
+  country: Country @belongsTo       #---------------- country_id: Int
+  uilanguage: Language @belongsTo   #---------------- uilanguage_id: Int
+  totalpoInts: Int
+  aboutme: String
+  native_language: String
+  linkedin_url: String
+  city: String
+  state: String
+  user_image: String                #-------------------- Shows user uploaded image or selected avatar
+  phone: String
+  parentmail: String
+  quota: Int
+  gender: gender_list
+  visit_tour: Int                   #----------------------visit_tour_list
+  dob: String                       #---datetime
+  provider: String
+  provider_id: String
+  mobile: String
+  devicetype: String
+  password: String
+  userplans:[UserSubscriptions] @hasMany
+  gamepreferencescodes: [gamePreference] @hasMany
+  userinterests: [Discipline] @belongsToMany(relation: "disciplines")
+  #userinterest: [Userinterest] @hasMany     ##-----------
+  badges:[Badge] @belongsToMany
+  exercisesbought: [Exerciseset] @belongsToMany(relation:"exercises") #----or followed
+  myexercises: [Exerciseset] @hasMany
+  exercisesCount: Int! @count(relation: "myexercises")
+  enrolledclasses: [Courseclass] @belongsToMany
+  myexams:[Exam] @hasMany  #------------------------- exams created as a Teacher
+  userexamscore:[Userexamscore] @hasMany #----------- score for exams taken as a Learner
+  userexamanswer:[Userexamanswer] @hasMany #--------- answer might be coming from a game
+  userSkillmasterylevel: [UserSkillmasterylevel] @hasMany
+  pendingtasks: [Pendingtask] @hasMany
+  # useractivitylog: [Useractivitylog] @hasOne #--- Not used
+  loginactivities:[LoginActivity] @hasMany (relation:"userloginactivities")
+  # parent_requests_for_child: [ParentRequest] @hasMany #-------- Use Not Known
+  # grade: Grade @belongsTo #----------------------------  Not used
+  passwordtoken: String
+  remember_token: String
+  confirmation_code: String
+  api_token: String
+  verified_token: String
+  isactive: Int
+  isverified: Int
+  child_password_reset: Int
+  isapproved_byparent: Int
+  isIntroinfo_displayed: Int
+  is_verified: Int
+  registeredby: registeredby_list
+  is_email_active: Boolean # is_email_active_list
+  lastloggedon: DateTime
+  registeredon: DateTime
+  created_at: String
+  updated_at: Date
+
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table school
+# ------------------------------------------------------------------------------------------------
+type School{
+   id: ID!
+   school_name: String
+   address: String
+   users: [User!]! @hasMany
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Tables: badges, userbadges
+# ---------------------------------------------------------------------------------------------------
+type Badge {
+  id: ID!
+  badgetitle: String
+  badgedescription: String
+  badgeimageurl: String
+  poInts: Int
+  badgeorder: Int
+  badgegroup: Int
+  isactive: Int
+  badge_condition: String
+  badge_type: badge_type_list
+  badge_info: [badge_info_list] # Set
+  addedon: DateTime
+  updated_at: DateTime
+}
+
+type Userbadge {
+  id: ID!
+  user: User @belongsTo #--- user_id: Int
+  badge: Badge @belongsTo #--- badge_id: Int
+  badgetitle: String
+  badgedescription: String
+  poInts: Int
+  # type: [userbadges_type_list]
+  skill_type: userbadges_skill_type_list
+  discipline_id: Int
+  grade_id: Int
+  activity_id: Int
+  dateacquired: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table userInterests
+# ---------------------------------------------------------------------------------------------------
+type Userinterest {
+  id: ID!
+  curriculum: Discipline @belongsTo(relation: "discipline") #--- discipline_id: Int
+  user: User @belongsTo #---user_id: Int
+  # language: Language @belongsTo #--- language_id: Int
+  # grade: Grade @belongsTo #--- grade_id: Int
+  # discipline: Topic @belongsTo(relation: "topic") #---topic_id: Int
+  exercise_type: Int
+  skill_category_id: String
+  skill_id: String
+  created_at: DateTime
+  exercises_id: String
+  #---
+  # approvedDiscipline: [Topic] @hasMany(relation:"approvedTopic")
+  #---
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Tables: role_user, roles
+# ---------------------------------------------------------------------------------------------------
+type RoleUser {
+  id: ID!
+  role_id: Int
+  user_id: Int
+}
+
+type Role {
+  id: ID!
+  name: String
+  description: Int
+  sort: Int
+  users: [User] @belongsTo
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table userexamscore
+# ---------------------------------------------------------------------------------------------------
+type Userexamscore{
+   id: ID!
+   user: User @belongsTo
+   game_id: Int
+   topics: Topic @belongsTo
+   match_uid: Int
+   exam: Exam @belongsTo # will be null if score is coming from a Game
+   classexam_id: Int
+   score: Int
+   totaltimespent: TIME
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table userskillmasterylevels, xp_points
+# ---------------------------------------------------------------------------------------------------
+type UserSkillmasterylevel {
+  id: ID!
+  user: User @belongsTo #---user_id: Int
+  skill: Skill @belongsTo #---skill_id: Int
+  # class: Classexam @belongsTo #---classexam_id: Int
+  score: Int
+  masteryLevel: Int
+  created_at: DateTime
+  updated_at: DateTime
+  #---
+  # skillMasteryLevel: Skillmasterylevel @belongsTo(relation: "Skillmasterylevel")
+  #---
+}
+
+type xp_poInts {
+  id: Int
+  activity_name: String
+  min_score: Int
+  poInt: Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table usernotifications, notificationsactions
+# ---------------------------------------------------------------------------------------------------
+type Usernotification {
+  id: ID!
+  receiver_userid: Int
+  sender: User @belongsTo(relation: "senderid") #---sender_userid: Int
+  notification: String
+  # action: Action @belongsTo #---action_id: Int
+  created_at: DateTime
+  updated_at: DateTime
+  status: usernotifications_status_list
+  # role_user: [RoleUser] @hasMany
+  # plans:[Plan] @hasMany
+}
+
+type notificationsactions {
+  id: ID!
+  user_id: Int #--- no resolver
+  type: notificationsactions_list
+  modelname: String
+  image: String
+  notificationtpl: String
+  created_at: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table pendingtasks
+# ---------------------------------------------------------------------------------------------------
+type Pendingtask {
+  id: ID!
+  use: User @belongsTo #--- user_id: Int
+  sender: User @belongsTo #---  sender_id: Int
+  pending_task_description: String
+  pending_task_description_ar: String
+  pending_task_action: String
+  status: pendingtasks_status_list
+  task_type: Int # task_type_list
+  sort: Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table: plan_options, options, plans, user_subscriptions
+## type Subscription is a special type in lighthouse , Table subscriptions
+# ---------------------------------------------------------------------------------------------------
+type UserSubscriptions {
+   id: ID!
+   user: User @belongsTo #--- user_id: Int
+   plan: Plan @belongsTo #--- plan_id: Int
+   invoice_id: Int
+   subscribed_at: DateTime
+   expired_at: DateTime
+   unsubscribed_at: DateTime
+   created_at: DateTime
+   updated_at: DateTime
+   #getByUserAndRole($user_id , $role_id)
+}
+
+type Plan {
+  id: ID!
+  name: String
+  description: String
+  role: Role @belongsTo #--- role_id: Int
+  price: Float
+  visibility: visibility_list
+  created_at: DateTime
+  updated_at: DateTime
+  plan_options: [PlanOption] @hasMany
+  # subscriptions: [Subscription] @hasMany
+  #getPlansByRoleId($role_id)
+}
+
+type PlanOption {
+  id: ID!
+  plan: Plan @belongsTo #--- plan_id: Int
+  option: Option @belongsTo #--- option_id: Int
+  value: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+type Option {
+   id: Int
+   label: String
+   category: String
+   created_at: DateTime
+   updated_at: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table useractivitylogs, activities, login activities
+# ---------------------------------------------------------------------------------------------------
+type Useractivitylog {
+  id: ID!
+  created_at: DateTime
+  activity_id: Int
+  user: User @belongsTo #--- user_id: Int
+  poInts: Int
+  accumulated_poInts: Int
+  details: String
+  device: String
+  browserinformation: String
+}
+
+type Activity {
+  id: ID!
+  role_type: String #---check
+  activity_description: String
+  activity_description_en: String
+  activity_description_ar: String
+  activity_action: String
+  activity_category: activity_category_list
+  order: Int
+}
+
+type LoginActivity {
+  id: ID!
+  user_id: Int # to check no implementation
+  user_agent: String
+  ip_address: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table activity_log  #--- No Implementation
+# ------------------------------------------------------------------------------------------------
+type activity_log { #--- No Implementation
+  id: ID!
+  name: String @rename(attribute: "log_name")
+  description: String
+  subject_id: Int
+  subject_type: String
+  causer_id: Int
+  causer_type: String
+  properties: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table game_preferences
+# ---------------------------------------------------------------------------------------------------
+type gamePreference { #--- to change the capitalization in the model and here
+  id: ID!
+  user: User @belongsTo #--user_id: Int
+  language: Language @belongsTo #---language_id: Int
+  discipline: Topic @belongsTo(relation: "topic") #---topic_id: Int
+  curriculum: Discipline @belongsTo(relation: "discipline") #---discipline_id: Int
+  skill_category_id: String #--needs resolvers
+  skill_id: String #--needs resolvers
+  code: String
+  maxtime: Int
+  questiontype: Int
+  list_exercise_ids: String
+  size: Int
+  haspassage: Int
+  created_at: DateTime
+  updated_at: DateTime
+  grade_id: Int #--needs resolvers
+  #getExercises
+}
+

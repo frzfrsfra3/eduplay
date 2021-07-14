@@ -1,0 +1,148 @@
+# ------------------------------------------------------------------------------------------------
+# ## Table exercisesets
+# ------------------------------------------------------------------------------------------------
+type Exerciseset {
+  id: ID!
+  discipline: Topic @belongsTo(relation: "topic") #--- topic_id: Int
+  grade: Grade @belongsTo #--- grade_id: Int
+  language: Language @belongsTo #--- language_id: Int
+  curriculum: Discipline @belongsTo(relation: "discipline") #--- discipline_id: Int
+  owner: User @belongsTo #--- createdby: Int
+  minimum_age: Int
+  maximum_age: Int
+  price: Int
+  title: String
+  exerciseset_image: String
+  description: String
+  publish_status: publish_status_list
+  created_at: DateTime
+  updated_at: DateTime
+  questionsCount: Int! @count(relation: "question")
+  questions: [Question] @hasMany(relation: "question")
+  publishedToClasses: [Courseclass] @hasMany(relation: "classes")
+  buyers:[User] @belongsToMany  #------------ These are followers also
+  ##passages: [Passage] @hasMany  #------------ This is not used currently
+  maxduration: String  @field(resolver:"App\\GraphQL\\Types\\ExerciseType@maxduration")
+  skillsCount: Int! @field(resolver:"App\\graphql\\Types\\ExerciseType@skillscount")
+  averageRating: Int! @field(resolver:"App\\graphql\\Types\\ExerciseType@averagerating")
+  reviews:[ratings!]! @field(resolver:"App\\Http\\Controllers\\Controller@collectRatingsWithUser")
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table questions
+# ------------------------------------------------------------------------------------------------
+type Question {
+  id: ID!
+  #---
+  exercise: Exerciseset @belongsTo #--- exercise_id: Int
+  skill: Skill @belongsTo #--- skill: Int
+  skillcategory: Skillcategory @belongsTo #--- skill_category_id: Int
+  passage: Passage @belongsTo #--passage_id: Int
+  #---
+  question_count: Int
+  size: Int
+  maxtime: Int
+  mIntime: Int
+  param: String
+  details: String
+  json_details: String
+  hInt: String
+  tag: String
+  questiontype: questions_questiontype_list
+  difficultylevel: questions_difficultylevel_list
+  created_at: DateTime
+  updated_at: DateTime
+  #---
+  answeroptions: [Answeroption] @hasMany
+  #examquestion: Examquestion @hasOne
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table passages
+# ------------------------------------------------------------------------------------------------
+type Passage {
+  id: ID!
+  title: String @rename(attribute: "passage_title")
+  passage_String: String
+  exercise: Exerciseset @belongsTo(relation: "exerciseset") #--- exercise_id: Int
+  createdby: Int
+  created_at: DateTime
+  updated_at: DateTime
+  #---
+  questions: [Question] @hasMany
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table answeroptions
+# ------------------------------------------------------------------------------------------------
+type Answeroption {
+  id: ID!
+  question: Question @belongsTo #--question_id: Int
+  answer_type: answer_type_list
+  details: String
+  json_details: String
+  iscorrect: Int
+  sort_order: Int
+  #---
+  #isanswered($classexam_id)
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table practiceresults
+# ------------------------------------------------------------------------------------------------
+type practiceresults {
+  id: ID!
+  question_id: Int
+  user_id: Int
+  answer_id: Int
+  topics_id: Int
+  exercise_id: Int
+  iscorrect: Int
+  total_minutes: TIME
+  practice_token: String
+  created_at: DateTime
+}
+
+#-------check everything below-------------
+
+# ---------------------------------------------------------------------------------------------------
+## Table ratings
+# ---------------------------------------------------------------------------------------------------
+type ratings {
+  id: Int
+  rating: Int
+  title: String
+  body: String
+  reviewrateable_id: Int
+  reviewrateable_type: String
+  author_id: Int
+  author_type: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Tables: tagging_tag_groups, tagging_tagged, tagging_tags
+# ---------------------------------------------------------------------------------------------------
+type tagging_tag_groups {
+  id: Int
+  slug: String
+  name: String
+}
+
+type tagging_tagged {
+  id: Int
+  taggable_id: Int
+  taggable_type: String
+  tag_name: String
+  tag_slug: String
+}
+
+type tagging_tags {
+  id: Int
+  tag_group_id: Int
+  slug: String
+  name: String
+  suggest: Int
+  count: Int
+}

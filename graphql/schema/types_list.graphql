@@ -1,0 +1,54 @@
+# ---------------------------------------------------------------------------------------------------
+## Table languages
+# ---------------------------------------------------------------------------------------------------
+
+type Language {
+  id: Int
+  name: String @rename(attribute: "language")
+  name_ar: String @rename(attribute: "lang_ar")
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table countries
+# ---------------------------------------------------------------------------------------------------
+
+type Country {
+  id: ID!
+  name: String @rename(attribute: "country_name")
+  name_ar: String @rename(attribute: "country_name_ar")
+  name_fr: String @rename(attribute: "country_name_fr")
+  abbreviation_code: String
+  isoCode: String @rename(attribute: "countries_iso_code_3")
+  address_format_id: Int
+  flag: String @rename(attribute: "country_flag")
+  created_at: String
+  updated_at: String
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table schools
+# ---------------------------------------------------------------------------------------------------
+
+type School {
+  id: ID!
+  name: String @rename(attribute: "school_name")
+  address: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table skillmasterylevels
+# ---------------------------------------------------------------------------------------------------
+
+type Skillmasterylevel {
+  id: ID!
+  levelname: String
+  level_massage: String
+  min_score: Int
+  max_score: Int
+  min_consecutive_value: Int
+  max_consecutive_value: Int
+  created_at: DateTime
+  updated_at: DateTime
+}

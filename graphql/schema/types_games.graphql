@@ -1,0 +1,100 @@
+# ------------------------------------------------------------------------------------------------
+# ## Table games
+# ------------------------------------------------------------------------------------------------
+
+type Game {
+  id: ID!
+  curriculum: Discipline @belongsTo(relation: "discipline") #--- discipline_id: Int
+  developer: [User] @belongsTo #---- developer_id: Int
+  name: String @rename(attribute: "game_name")
+  patform: patform_list
+  description: String
+  secrete_key: String
+  game_icon: String
+  image1: String
+  image2: String
+  image3: String
+  image4: String
+  image5: String
+  status: games_status
+  isapproved: isactive_list
+  isactive: isactive_list
+  created_at: DateTime
+  updated_at: DateTime
+  app_id: String #-- App\Models\App to do
+  category: String # category : [Category] @belongsTo #--'App\Models\Category'  to do
+  minimum_age: Int # age App\Models\Age
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Tables: avatar_accessories, avatars
+# ------------------------------------------------------------------------------------------------
+type AvatarAccessorie {
+  id: ID!
+  avatar: Avatar @belongsTo #--- avatar_id: Int
+  image: String
+  poInts: Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+type Avatar {
+  id: ID!
+  name: String
+  image: String
+  category: String
+  poInts: Int
+  created_at: DateTime
+  updated_at: DateTime
+ # accessories:[AvatarAccessorie] @hasMany
+  #---
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table gamedetails
+# ------------------------------------------------------------------------------------------------
+
+type gamedetails {
+  id: ID!
+  platform_id: Int
+  game: Game @belongsTo #--- game_id: Int
+  android_link: String
+  ios_link: String
+  ios_bundle_id: String
+  ios_url_scheme_suffix: String
+  ios_iphone_store_id: String
+  ios_ipad_store_id: String
+  android_package_name: String
+  android_key_hashes: String
+  android_class_name: String
+  android_amazon_url: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table gamedownloads
+# ------------------------------------------------------------------------------------------------
+
+type gamedownloads {
+  id: ID!
+  user: User @belongsTo #---  user_id: Int
+  game: Game @belongsTo #--- game_id: Int
+  created_at: DateTime
+  updated_at: DateTime
+  download_type: download_type_list
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table gamerestrictedkids   --- Not yet implemented
+# ------------------------------------------------------------------------------------------------
+
+type gamerestrictedkids { #--- Not yet implemented
+  id: ID!
+  kid_id: Int
+  game: Game @belongsTo #--- game_id: Int
+  restricted_by: Int
+  created_at: DateTime
+  updated_at: DateTime
+  isactive: isactive_list
+}

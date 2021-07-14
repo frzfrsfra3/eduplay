@@ -1,0 +1,63 @@
+# ------------------------------------------------------------------------------------------------
+# ## Table courseclasses
+# ------------------------------------------------------------------------------------------------
+
+type Courseclass {
+  id: ID!
+  #----
+  grade: Grade @belongsTo #--- grade_id: Int
+  curriculum: Discipline @belongsTo(relation: "discipline") #--- discipline_id: Int
+  teacher: User @belongsTo(relation: "teacher_userid") #--- teacher_userid: Int
+  language: Language @belongsTo #--- language_id: Int
+  #---
+  name: String @rename(attribute: "class_name")
+  description: String @rename(attribute: "class_description")
+  start_date: DateTime
+  end_date: DateTime
+  iconurl: String
+  isavailable: isavailable_list
+  created_at: DateTime
+  updated_at: DateTime
+  #---
+  # exams: [Exam] @belongsToMany
+  # exercises: [Exercise] @hasMany
+  # learners: [user] @belongsToMany
+  #---
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table classexams
+# ------------------------------------------------------------------------------------------------
+
+type classexams {
+  id: ID!
+  class: Courseclass @belongsTo #--- class_id: Int
+  exam: Exam @belongsTo #--- exam_id: Int
+  exam_start_date: DateTime
+  exam_end_date: DateTime
+  addedon: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table classexercises
+# ------------------------------------------------------------------------------------------------
+
+type classexercises {
+  id: ID!
+  class: Courseclass @belongsTo #--- class_id: Int
+  exercise: Exerciseset @belongsTo #--- exercise_id: Int
+  status: classexercises_status
+  addedon: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table classlearners
+# ------------------------------------------------------------------------------------------------
+
+type classlearners {
+  id: ID!
+  class: Courseclass @belongsTo #--- class_id: Int
+  user: User @belongsTo #--- user_id: Int
+  status: classlearners_status_list!
+  joindate: DateTime
+}

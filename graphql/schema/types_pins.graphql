@@ -1,0 +1,14 @@
+# ------------------------------------------------------------------------------------------------
+# ## Table pins
+# ------------------------------------------------------------------------------------------------
+
+type Pin {
+  id: Int
+  # user: User @belongsTo #-- user_id: Int  need resolvers
+  # class: Courseclass @belongsTo #---class_id: Int need resolvers
+  description: String
+  url: String
+  image: String
+  created_at: DateTime
+  updated_at: DateTime
+}

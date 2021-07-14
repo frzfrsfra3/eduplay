@@ -1,0 +1,47 @@
+type Query {
+  users: [User!]! @all
+  user(id: ID @eq): User @find
+  school(id: ID @eq): School @find
+  roles: [Role!]! @all
+
+  # User Subscriptions from Subscriptions Table
+  plans:[Plan!]! @all
+  plan(id: ID @eq): Plan @find
+
+  payingcustomers:[UserSubscriptions!]! @all
+
+  #-- convert topics to disciplines
+  disciplines: [Topic!]! @all
+  discipline(id: ID @eq): Topic @find
+
+  #-- convert discplines to curricula
+  curricula: [Discipline!]! @all
+  curriculum(id: ID @eq): Discipline @find
+
+  exercises: [Exerciseset!]! @all
+  exercise(id: ID @eq): Exerciseset @find
+
+  skills: [Skill!]! @all
+  skill(id: ID @eq): Skill @find
+
+  skillcategories: [Skillcategory!]! @all
+  skillcategory(id: ID @eq): Skillcategory @find
+
+  questions: [Question!]! @all
+  question(id: ID @eq): Question @find
+
+  classes: [Courseclass!]! @all
+  class(id: ID @eq): Courseclass @find
+
+  exams: [Exam!]! @all
+  exam(id: ID @eq): Exam @find
+
+  games: [Game!]! @all
+  game(id: ID @eq): Game @find
+
+  TotalExercisesCount: Int! @count(model: "ExerciseSet")
+  TotalQuestionsCount: Int! @count(model: "Question")
+  TotalClassesCount: Int! @count(model: "Courseclass")
+  TotalExamsCount: Int! @count(model: "Exam")
+  TotalGamesCount: Int! @count(model: "Game")
+}

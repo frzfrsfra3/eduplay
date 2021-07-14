@@ -1,0 +1,36 @@
+<?php
+
+return [
+
+    'id' => 'هوية شخصية',
+    'id__placeholder' => 'ادخل الرقم ...',
+    'question_id' => 'سؤال :',
+    'question_id__placeholder' => 'اختر السؤال',
+    'answer_type' => 'نوع الجواب',
+    'answer_type__placeholder' => 'ادخل نوع الجواب...',
+    'answer_type_text' => 'نص',
+    'answer_type_image' => 'صور',
+    'answer_type_audio' => 'صوتيات',
+    'answer_type_video' => 'فيديو',
+    'answer_type_richtext' => 'النص الغني',
+    'details' => 'تفاصيل',
+    'iscorrect' => 'صحيح؟',
+    'iscorrect__placeholder' => 'الاشارة الى الجواب الصحيح',
+    'sort_order' => 'الترتيب',
+    'sort_order__placeholder' => 'ادخل الترتيب....',
+    'create' => 'اضف جوابا',
+    'delete' => 'حذف الجواب',
+    'edit' => 'تعديل الجواب',
+    'show' => 'اظهار الجواب',
+    'show_all' => 'اظهار جميع الاجوبة',
+    'add' => 'اضف',
+    'update' => 'تعديل',
+    'confirm_delete' => 'تأكيد الحذف',
+    'none_available' => 'لا يوجد اجوبة',
+    'model_plural' => 'الاجوبة',
+    'model_was_added' => 'تم اضافة الجواب بنجاح',
+    'model_was_updated' => 'تم تعديل الجواب',
+    'model_was_deleted' => 'تم حذف الجواب',
+    'unexpected_error' => 'حدث خطأ غير متوقع...',
+
+];

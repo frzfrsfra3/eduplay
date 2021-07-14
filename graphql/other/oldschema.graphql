@@ -1,0 +1,57 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime
+  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+  users: [User!]! @all
+  user(id: ID @eq): User @find
+  school(id: ID @eq): School @find
+  exercises: [ExerciseSet!]! @all
+  ExercisesCount: Int! @count(model: "ExerciseSet")
+}
+
+type User {
+  id: ID!
+  name: String
+  email: String
+  mobile: String
+  school: School! @belongsTo
+}
+
+type School {
+  id: ID!
+  school_name: String
+  address: String
+  users: [User!]! @hasMany
+}
+
+type Discipline {
+  id: ID!
+   : String
+}
+
+type Language {
+  id: ID!
+  language: String
+}
+
+type Question {
+  id: ID!
+  details: String
+}
+
+"""languageName(table: mytable, id: ID): String @field(resolver:'jj@GetSublanguage_name')
+  """
+type ExerciseSet {
+  id: ID!
+  title: String
+  discipline: Discipline @belongsTo
+  language: Language @belongsTo
+  user: [User!]
+  description: String
+  question: [Question!]! @hasMany
+  qCount: Int! @count(relation: "question")
+}

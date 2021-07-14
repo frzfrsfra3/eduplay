@@ -1,0 +1,272 @@
+[
+    {
+        "model-name": "curriculumgradelist",
+        "resource-file": "curriculumgradelists.json",
+        "table-name": "curriculumgradelist"
+    },
+    {
+        "model-name": "grade",
+        "resource-file": "grades.json",
+        "table-name": "grade"
+    },
+    {
+        "model-name": "AnswerOption",
+        "resource-file": "answer_options.json",
+        "table-name": "answer_options"
+    },
+    {
+        "model-name": "Answeroption",
+        "resource-file": "answeroptions.json",
+        "table-name": "answeroptions"
+    },
+    {
+        "model-name": "Badge",
+        "resource-file": "badges.json",
+        "table-name": "badges"
+    },
+    {
+        "model-name": "Businessrule",
+        "resource-file": "businessrules.json",
+        "table-name": "businessrules"
+    },
+    {
+        "model-name": "Classexam",
+        "resource-file": "classexams.json",
+        "table-name": "classexams"
+    },
+    {
+        "model-name": "Classexercise",
+        "resource-file": "classexercises.json",
+        "table-name": "classexercises"
+    },
+    {
+        "model-name": "Classlearner",
+        "resource-file": "classlearners.json",
+        "table-name": "classlearners"
+    },
+    {
+        "model-name": "Country",
+        "resource-file": "countries.json",
+        "table-name": "countries"
+    },
+    {
+        "model-name": "Courseclass",
+        "resource-file": "courseclasses.json",
+        "table-name": "courseclasses"
+    },
+    {
+        "model-name": "Curriculum",
+        "resource-file": "curricula.json",
+        "table-name": "curricula"
+    },
+    {
+        "model-name": "Disciplinecollaboratos",
+        "resource-file": "disciplinecollaboratos.json",
+        "table-name": "disciplinecollaboratos"
+    },
+    {
+        "model-name": "Disciplinecollaborator",
+        "resource-file": "disciplinecollaborators.json",
+        "table-name": "disciplinecollaborators"
+    },
+    {
+        "model-name": "Discipline",
+        "resource-file": "disciplines.json",
+        "table-name": "disciplines"
+    },
+    {
+        "model-name": "Disciplineversion",
+        "resource-file": "disciplineversions.json",
+        "table-name": "disciplineversions"
+    },
+    {
+        "model-name": "Examquestion",
+        "resource-file": "examquestions.json",
+        "table-name": "examquestions"
+    },
+    {
+        "model-name": "Exam",
+        "resource-file": "exams.json",
+        "table-name": "exams"
+    },
+    {
+        "model-name": "Exercisebuyer",
+        "resource-file": "exercisebuyers.json",
+        "table-name": "exercisebuyers"
+    },
+    {
+        "model-name": "Exercisesetbuyer",
+        "resource-file": "exercisesetbuyers.json",
+        "table-name": "exercisesetbuyers"
+    },
+    {
+        "model-name": "Exerciseset",
+        "resource-file": "exercisesets.json",
+        "table-name": "exercisesets"
+    },
+    {
+        "model-name": "Gamedetail",
+        "resource-file": "gamedetails.json",
+        "table-name": "gamedetails"
+    },
+    {
+        "model-name": "Gamedownload",
+        "resource-file": "gamedownloads.json",
+        "table-name": "gamedownloads"
+    },
+    {
+        "model-name": "Gamerestrictedkid",
+        "resource-file": "gamerestrictedkids.json",
+        "table-name": "gamerestrictedkids"
+    },
+    {
+        "model-name": "Game",
+        "resource-file": "games.json",
+        "table-name": "games"
+    },
+    {
+        "model-name": "Grade",
+        "resource-file": "grades.json",
+        "table-name": "grades"
+    },
+    {
+        "model-name": "Inviteduser",
+        "resource-file": "invitedusers.json",
+        "table-name": "invitedusers"
+    },
+    {
+        "model-name": "Language",
+        "resource-file": "languages.json",
+        "table-name": "languages"
+    },
+    {
+        "model-name": "Newslettersubscription",
+        "resource-file": "newslettersubscriptions.json",
+        "table-name": "newslettersubscriptions"
+    },
+    {
+        "model-name": "Notification",
+        "resource-file": "notifications.json",
+        "table-name": "notifications"
+    },
+    {
+        "model-name": "Notificationaction",
+        "resource-file": "notificationactions.json",
+        "table-name": "notificationactions"
+    },
+    {
+        "model-name": "Notificationsaction",
+        "resource-file": "notificationsactions.json",
+        "table-name": "notificationsactions"
+    },
+    {
+        "model-name": "Pendingtask",
+        "resource-file": "pendingtasks.json",
+        "table-name": "pendingtasks"
+    },
+    {
+        "model-name": "Question",
+        "resource-file": "questions.json",
+        "table-name": "questions"
+    },
+    {
+        "model-name": "School",
+        "resource-file": "schools.json",
+        "table-name": "schools"
+    },
+    {
+        "model-name": "Skillcategory",
+        "resource-file": "skillcategories.json",
+        "table-name": "skillcategories"
+    },
+    {
+        "model-name": "Skillmasterlevel",
+        "resource-file": "skillmasterlevels.json",
+        "table-name": "skillmasterlevels"
+    },
+    {
+        "model-name": "UserSkillmasterylevel",
+        "resource-file": "userskillmasterylevels.json",
+        "table-name": "userskillmasterylevels"
+    },
+    {
+        "model-name": "Skill",
+        "resource-file": "skills.json",
+        "table-name": "skills"
+    },
+    {
+        "model-name": "Topic",
+        "resource-file": "topics.json",
+        "table-name": "topics"
+    },
+    {
+        "model-name": "Useractivitylog",
+        "resource-file": "useractivitylogs.json",
+        "table-name": "useractivitylogs"
+    },
+    {
+        "model-name": "Userbadge",
+        "resource-file": "userbadges.json",
+        "table-name": "userbadges"
+    },
+    {
+        "model-name": "Userexamanswer",
+        "resource-file": "userexamanswers.json",
+        "table-name": "userexamanswers"
+    },
+    {
+        "model-name": "Userexamscore",
+        "resource-file": "userexamscores.json",
+        "table-name": "userexamscores"
+    },
+    {
+        "model-name": "Userinterest",
+        "resource-file": "userinterests.json",
+        "table-name": "userinterests"
+    },
+    {
+        "model-name": "Usernotification",
+        "resource-file": "usernotifications.json",
+        "table-name": "usernotifications"
+    },
+    {
+        "model-name": "User",
+        "resource-file": "users.json",
+        "table-name": "users"
+    },
+    {
+        "model-name": "Activity",
+        "resource-file": "activities.json",
+        "table-name": "activities"
+    },
+    {
+        "model-name": "examselections",
+        "resource-file": "examselections.json",
+        "table-name": "examselections"
+    },
+    {
+        "model-name": "Passage",
+        "resource-file": "passages.json",
+        "table-name": "passages"
+    },
+    {
+        "model-name": "Practiceresult",
+        "resource-file": "practiceresults.json",
+        "table-name": "practiceresults"
+    },
+    {
+        "model-name": "masterylevels",
+        "resource-file": "masterylevels.json",
+        "table-name": "masterylevels"
+    },
+    {
+        "model-name": "Skillmasterylevel",
+        "resource-file": "skillmasterylevels.json",
+        "table-name": "skillmasterylevels"
+    },
+    {
+        "model-name": "Xp_point",
+        "resource-file": "xp_points.json",
+        "table-name": "xp_points"
+    }
+]

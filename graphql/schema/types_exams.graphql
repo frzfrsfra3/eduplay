@@ -1,0 +1,146 @@
+# ------------------------------------------------------------------------------------------------
+# ## Table exams
+# ------------------------------------------------------------------------------------------------
+
+type Exam {
+  id: ID!
+  teacher: User @belongsTo(relation: "teacheruser") #---teacheruser_id: Int
+  skillcategory: Skillcategory @belongsTo #--- skillcategory_id: Int
+  skill: Skill @belongsTo #--- skill_id: Int
+  maxpoInts: Int
+  title: String
+  examtype: examtype_list
+  isavailable: isavailable_list
+  exam_start_date: DateTime
+  exam_end_date: DateTime
+  examquestions: [Question] @belongsToMany
+  # disciplines: [Topic] @belongsToMany(relation: "topics")
+  # examExercises: [ExamExercises] @belongsToMany
+  # newdiscipline: Discpline @belongsToMany
+  # exam_exercisesets:ExamExercises @hasMany
+  # examSkillCategories:Skillcategory @belongsToMany
+  #questionanswers: [Question] belongsToMany
+  # classes:Classexam @hasMany(relation: "classexam")
+  created_at: DateTime
+  updated_at: DateTime
+
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table userexamanswers
+# ------------------------------------------------------------------------------------------------
+
+type Userexamanswer {
+  id: ID!
+  answerdate: DateTime
+  user: User @belongsTo #--- user_id: Int
+  exam: Exam @belongsTo #--- exam_id: Int
+  # class: Courseclass @belongsTo #---  class_id: Int
+  classexam_id: Int
+  question: Question @belongsTo #--- question_id: Int
+  # answer: Answer @belongsTo #--- answer_id: Int   there is no Answer Type to check model
+  attempt_number: Int
+  timespent: Int
+  iscorrect: Int
+  params: Int
+  match_uid: Int
+  match_datetime: DateTime
+  teachermark: Int
+  poIntsgained: Int
+  gameid: Int # ??? to do
+  user_agent: String
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table userexamscores
+# ------------------------------------------------------------------------------------------------
+
+type Userexamscores {
+  id: ID!
+  user: User @belongsTo #--- user_id: Int
+  exam: Exam @belongsTo #--- exam_id: Int
+  skill: Skill @belongsTo #--- skill_id: Int
+  discipline: Topic @belongsTo(relation: "topics") #--- topic_id: Int
+  classexam_id: Int
+  game_id: Int
+  match_uid: Int
+  score: Int
+  totaltimespent: Int
+  created_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table exam_disciplines  --- Not yet implemented
+# ------------------------------------------------------------------------------------------------
+
+type ExamDiscipline { #--- Not yet implemented
+  discipline_id: ID!
+  exam_id: Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table exam_exercises
+# ------------------------------------------------------------------------------------------------
+
+type ExamExercises {
+  exerciseset_id: ID!
+  exercise: Exerciseset @hasOne(relation: "exerciseset")
+  exam_id: Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table exam_skill_categories -- Not yet implemented
+# ------------------------------------------------------------------------------------------------
+
+type ExamSkillCategories { # -- Not yet implemented
+  skill_category_id: ID!
+  skill_count: String
+  exam_id: Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table examquestions
+# ------------------------------------------------------------------------------------------------
+
+type Examquestion {
+  id: ID!
+  exam: Exam @belongsTo #---  exam_id: Int
+  question: Question @belongsTo #--  question_id: Int
+  poInts: Int
+  sort_order: Int
+  #----
+  # getUserExamAnswere: [Userexamanswer] @hasMany
+  # answereoption: [Answeroption] @hasMany
+  #----
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table examselections
+# ------------------------------------------------------------------------------------------------
+
+type Examselection {
+  id: ID!
+  exam: Exam @belongsTo #---  exam_id: Int
+  selection_id: Int
+  selection_table: String
+  isselected: Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table examtopics  -- to check whether implemented
+# ------------------------------------------------------------------------------------------------
+
+type Examtopic { #-- to check whether implemented
+  topic_id: ID!
+  exam_id: Int #-- to check
+  created_at: DateTime
+  updated_at: DateTime
+}

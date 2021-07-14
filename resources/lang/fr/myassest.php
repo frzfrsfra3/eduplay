@@ -1,0 +1,36 @@
+<?php
+
+return [
+
+    'my_assets' => 'Mes Atouts',
+    'name' => 'Nom',
+    'uploaded_date' => 'Date de mise en ligne',
+    'file_size' => 'Taille du fichier',
+    'action' => 'Action',
+    'storage' => 'Espace de stockage',
+    'error1' => 'Format invalide! le format doit être Image, Audio ou CSV.',
+    'files_error' => 'Erreur de fichiers:',
+    'CSV' => 'CSV',
+    'Images' => 'Images',
+    'Audio' => 'Audio',
+    'Mb_of_500_Mb' => 'Mb de 500 Mb',
+    'no_data_available' => 'Pas de données disponibles',
+
+    'not_enough_storage' => 'Pas assez d\'espace de stockage, veuillez vérifier !!',
+    'uploded_successfully' => 'Votre fichier a été téléchargé avec succès !!',
+    'Are_you_sure' => 'Êtes-vous sûr?',
+    'once_deleted' => 'Une fois supprimé, vous ne pourrez pas récupérer ce fichier!',
+    'file_deleted' => 'Votre fichier a été supprimé!',
+    'file_safe' => 'Votre dossier est en sécurité!',
+    'file_size_more_than' => 'La taille du fichier ne doit pas dépasser',
+    'play' => 'Jouer',
+    'no_directory_exist' => 'Aucun répertoire existant !!',
+    'upload_files' => 'Télécharger les fichiers',
+    'no_file_chosen' => 'Aucun fichier choisi',
+    'search' => 'Rechercher',
+    'MB_of' => 'Mo de',
+    'file_replace_meg_1' => 'Le fichier existe déjà. Si vous remplacez ce fichier, il',
+    'file_replace_meg_2' => 'des questions. Voulez-vous vraiment le remplacer?',
+    'cancel' => 'Annuler',
+    'replaced' => 'Remplacer',
+];

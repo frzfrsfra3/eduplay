@@ -1,0 +1,124 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+FontName KaTeX_Math
+FontSubfamily Bold Italic
+UniqueID FontForge 2.0 : KaTeX_Math-BoldItalic
+FullName KaTeX_Math-BoldItalic
+Version Version 1.1; ttfautohint (v1.3)
+PostScriptName KaTeX_Math-BoldItalic
+LicenseURL http://scripts.sil.org/OFL
+PreferredFamily KaTeX_Math
+PreferredSubfamily BoldItalic
+Weight Bold
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 50
+UnderlinePosition -125
+FontHeightOffset 90
+Ascender 725
+Descender -216
+FontBBox -23 -216 1219 725
+StartCharMetrics 102
+U 32 ; WX 250 ; N space ; G 3
+U 47 ; WX 894 ; N slash ; G 4
+U 65 ; WX 869 ; N A ; G 5
+U 66 ; WX 866 ; N B ; G 6
+U 67 ; WX 817 ; N C ; G 7
+U 68 ; WX 938 ; N D ; G 8
+U 69 ; WX 810 ; N E ; G 9
+U 70 ; WX 689 ; N F ; G 10
+U 71 ; WX 887 ; N G ; G 11
+U 72 ; WX 982 ; N H ; G 12
+U 73 ; WX 511 ; N I ; G 13
+U 74 ; WX 631 ; N J ; G 14
+U 75 ; WX 971 ; N K ; G 15
+U 76 ; WX 756 ; N L ; G 16
+U 77 ; WX 1142 ; N M ; G 17
+U 78 ; WX 950 ; N N ; G 18
+U 79 ; WX 837 ; N O ; G 19
+U 80 ; WX 723 ; N P ; G 20
+U 81 ; WX 869 ; N Q ; G 21
+U 82 ; WX 872 ; N R ; G 22
+U 83 ; WX 693 ; N S ; G 23
+U 84 ; WX 637 ; N T ; G 24
+U 85 ; WX 800 ; N U ; G 25
+U 86 ; WX 678 ; N V ; G 26
+U 87 ; WX 1093 ; N W ; G 27
+U 88 ; WX 947 ; N X ; G 28
+U 89 ; WX 675 ; N Y ; G 29
+U 90 ; WX 773 ; N Z ; G 30
+U 97 ; WX 633 ; N a ; G 31
+U 98 ; WX 521 ; N b ; G 32
+U 99 ; WX 513 ; N c ; G 33
+U 100 ; WX 610 ; N d ; G 34
+U 101 ; WX 554 ; N e ; G 35
+U 102 ; WX 568 ; N f ; G 36
+U 103 ; WX 545 ; N g ; G 37
+U 104 ; WX 668 ; N h ; G 38
+U 105 ; WX 405 ; N i ; G 39
+U 106 ; WX 471 ; N j ; G 40
+U 107 ; WX 604 ; N k ; G 41
+U 108 ; WX 348 ; N l ; G 42
+U 109 ; WX 1032 ; N m ; G 43
+U 110 ; WX 713 ; N n ; G 44
+U 111 ; WX 585 ; N o ; G 45
+U 112 ; WX 601 ; N p ; G 46
+U 113 ; WX 542 ; N q ; G 47
+U 114 ; WX 529 ; N r ; G 48
+U 115 ; WX 531 ; N s ; G 49
+U 116 ; WX 415 ; N t ; G 50
+U 117 ; WX 681 ; N u ; G 51
+U 118 ; WX 567 ; N v ; G 52
+U 119 ; WX 831 ; N w ; G 53
+U 120 ; WX 659 ; N x ; G 54
+U 121 ; WX 590 ; N y ; G 55
+U 122 ; WX 555 ; N z ; G 56
+U 160 ; WX 250 ; N uni00A0 ; G 57
+U 915 ; WX 657 ; N Gamma ; G 58
+U 916 ; WX 958 ; N increment ; G 59
+U 920 ; WX 867 ; N Theta ; G 60
+U 923 ; WX 806 ; N Lambda ; G 61
+U 926 ; WX 841 ; N Xi ; G 62
+U 928 ; WX 982 ; N Pi ; G 63
+U 931 ; WX 885 ; N Sigma ; G 64
+U 933 ; WX 671 ; N Upsilon ; G 65
+U 934 ; WX 767 ; N Phi ; G 66
+U 936 ; WX 714 ; N Psi ; G 67
+U 937 ; WX 879 ; N Omega ; G 68
+U 945 ; WX 761 ; N alpha ; G 69
+U 946 ; WX 660 ; N beta ; G 70
+U 947 ; WX 590 ; N gamma ; G 71
+U 948 ; WX 522 ; N delta ; G 72
+U 949 ; WX 529 ; N epsilon ; G 73
+U 950 ; WX 508 ; N zeta ; G 74
+U 951 ; WX 600 ; N eta ; G 75
+U 952 ; WX 562 ; N theta ; G 76
+U 953 ; WX 412 ; N iota ; G 77
+U 954 ; WX 668 ; N kappa ; G 78
+U 955 ; WX 671 ; N lambda ; G 79
+U 956 ; WX 708 ; N mu ; G 80
+U 957 ; WX 577 ; N nu ; G 81
+U 958 ; WX 508 ; N xi ; G 82
+U 959 ; WX 585 ; N omicron ; G 83
+U 960 ; WX 682 ; N pi ; G 84
+U 961 ; WX 612 ; N rho ; G 85
+U 962 ; WX 424 ; N sigma1 ; G 86
+U 963 ; WX 686 ; N sigma ; G 87
+U 964 ; WX 521 ; N tau ; G 88
+U 965 ; WX 631 ; N upsilon ; G 89
+U 966 ; WX 747 ; N phi ; G 90
+U 967 ; WX 718 ; N chi ; G 91
+U 968 ; WX 758 ; N psi ; G 92
+U 969 ; WX 718 ; N omega ; G 93
+U 977 ; WX 692 ; N theta1 ; G 94
+U 981 ; WX 712 ; N phi1 ; G 95
+U 982 ; WX 975 ; N omega1 ; G 96
+U 1009 ; WX 612 ; N uni03F1 ; G 97
+U 1013 ; WX 483 ; N uni03F5 ; G 98
+U 61437 ; WX 900 ; N uniEFFD ; G 99
+U 61438 ; WX 300 ; N uniEFFE ; G 100
+U 61439 ; WX 100 ; N uniEFFF ; G 101
+EndCharMetrics
+EndFontMetrics

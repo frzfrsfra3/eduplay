@@ -1,0 +1,1 @@
+<img id="user_img"  src="{{ asset('assets/images/output') }}/{{$imagename}}" >

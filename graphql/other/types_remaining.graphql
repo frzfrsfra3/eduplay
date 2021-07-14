@@ -1,0 +1,192 @@
+
+
+
+"""
+## Table eduplaycloudstaginggamedb_client.businessrules
+"""
+type businessrules {
+  id: Int   
+  businessrule_name: String  
+  businessrule_condition: String  
+  isactive: Int    
+  created_at: DateTime   
+  updated_at: DateTime   
+  }
+
+
+"""
+## Table eduplaycloudstaginggamedb_client.disciplinecollaborators
+"""
+type disciplinecollaborators {
+  id Int   
+  discipline_id Int  
+  user_id Int  
+  message String  
+  iscoordinator Int    
+  approvalstatus approve_status_list!   
+  created_at DateTime    
+}
+
+
+"""
+## Table eduplaycloudstaginggamedb_client.disciplineversions
+"""
+type disciplineversions {
+  id Int   
+  discipline_id Int  
+  version Int  
+  ispublished Int    
+  comments String   
+  created_at DateTime    
+}
+
+"""
+## Table eduplaycloudstaginggamedb_client.exercisesetbuyers
+"""
+type exercisesetbuyers {
+  id Int   
+  exerciseset_id Int  
+  user_id Int  
+  joindate DateTime    
+}
+
+
+"""
+## Table eduplaycloudstaginggamedb_client.filters
+"""
+type filters {
+  id Int    
+  user_id Int   
+  type String   
+  operator String   
+  value String   
+  created_at DateTime   
+  updated_at DateTime  
+}
+
+"""
+## Table eduplaycloudstaginggamedb_client.google_classroom
+"""
+type google_classroom {
+  id Int    
+  user_id Int   
+  classid String   
+  name String   
+  room Int   
+  section String   
+  alternateLink String   
+  courseState String   
+  descriptionHeading String   
+  description String   
+  enrollmentCode String   
+  created_at DateTime   
+  updated_at DateTime 
+}
+ 
+
+"""
+## Table eduplaycloudstaginggamedb_client.googleclass_exams
+"""
+type googleclass_exams {
+  id Int    
+  class_id Int   
+  exam_id Int   
+  exam_start_date DateTime   
+  exam_end_date DateTime   
+  addedon DateTime    
+ } 
+
+"""
+## Table eduplaycloudstaginggamedb_client.googleclass_exercises
+"""
+
+type googleclass_exercises {
+  id Int    
+  class_id Int   
+  exercise_id Int   
+  googleclassid String   
+  status googleclass_exercises_status!
+  addedon DateTime   
+}
+
+
+"""
+## Table eduplaycloudstaginggamedb_client.googleclass_learners
+"""
+type googleclass_learners {
+  id Int    
+  user_id Int   
+  class_id Int   
+  googleclassid String   
+  status String 
+  joindate DateTime   
+}
+
+"""
+## Table eduplaycloudstaginggamedb_client.invitedusers
+"""
+
+type invitedusers {
+  id Int   
+  email String  
+  invitedby Int  
+  message String  
+  invitationtype invitationtype!  
+  invitationstatus invitationstatus!
+  isinvitedregistered Int    
+  discipline_id Int   
+  created_at DateTime    
+ }
+
+"""
+## Table eduplaycloudstaginggamedb_client.jobs
+"""
+type jobs {
+  id BIGInt    
+  queue String  
+  payload String  
+  attempts Int   
+  reserved_at Int    
+  available_at Int   
+  created_at Int   
+}
+
+"""
+## Table eduplaycloudstaginggamedb_client.migrations
+"""
+type migrations {
+  id Int    
+  migration String  
+  batch Int  
+}
+
+"""
+## Table eduplaycloudstaginggamedb_client.newslettersubscriptions
+"""
+type newslettersubscriptions {
+  id Int   
+  email String  
+  subscribedon DateTime    
+}  
+
+"""
+## Table eduplaycloudstaginggamedb_client.parent_requests
+"""
+type parent_requests {
+  id Int    
+  parent_id Int  
+  child_id Int  
+  approved Int   
+  created_at DateTime   
+  updated_at DateTime   
+}
+
+"""
+## Table eduplaycloudstaginggamedb_client.password_resets
+"""
+type password_resets {
+  email String  
+  token String  
+  created_at DateTime   
+ } 
+

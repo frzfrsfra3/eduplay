@@ -1,0 +1,155 @@
+# ---------------------------------------------------------------------------------------------------
+## Table topics --> This is actually disciplines
+# ---------------------------------------------------------------------------------------------------
+type Topic { # This is actually disciplines
+  id: ID!
+  name: String @rename(attribute: "topic_name")
+  name_ar: String @rename(attribute: "topic_name_ar")
+  name_fr: String @rename(attribute: "topic_name_fr")
+  iconurl: String
+  approve_status: topics_approve_status
+  createdby: User @belongsTo # Int
+  updatedby: User @belongsTo # Int
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table disciplines ---This is actucally curriculum
+# ------------------------------------------------------------------------------------------------
+type Discipline { #This is actucally curriculum
+  id: ID!
+  gradelist: Curriculum_gradelist @belongsTo(relation: "curriculum_gradelist") #---curriculum_gradelist_id: Int
+  languagePreference: Language @belongsTo #--language_preference_id: Int
+  name: String @rename(attribute: "discipline_name")
+  topic_id: String
+  discipline: Topic @belongsTo(relation: "topics") #--- topic_id: Int
+  # createdby: User @belongsTo # Int
+  # updatedby: User @belongsTo # Int
+  description: String
+  curr_group: String
+  iconurl: String
+  color: String
+  approve_status: approve_status_list
+  publish_status: publish_status_list
+  created_at: DateTime
+  updated_at: DateTime
+  #----
+  # classes:[Courseclass] @hasMany (relation: "courseclasses")
+  # exercises: [Exercise] @hasMany (relation: "exercisesets")
+  skillcategories: [Skillcategory] @hasMany
+  # classes($discipline_id,$language_id)
+  # disciplinecollaborators
+  # disciplineversions
+  #----
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table skills
+# ------------------------------------------------------------------------------------------------
+type Skill {
+  id: ID!
+  #----
+  category: Skillcategory @belongsTo(relation: skillcategory) #--- skill_category_id: Int
+  discipline: Topic @belongsTo(relation: "topic") #--- topic_id: Int
+  grade: Grade @belongsTo #--- grade_id: Int
+  #-----
+  origin_id: Int
+  createdby: Int
+  updatedby: Int
+  moderatedby: Int
+  publishedby: Int
+  version: Int
+  sort_order: Int
+  new_sort_order: Int
+  name: String @rename(attribute: "skill_name")
+  description: String @rename(attribute: "skill_description")
+  description_Fr: String
+  description_Ar: String
+  publish_status: skills_publish_status_list
+  approve_status: skills_approve_status_list
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+# ------------------------------------------------------------------------------------------------
+# ## Table skillcategories
+# ------------------------------------------------------------------------------------------------
+
+type Skillcategory {
+  id: ID!
+  #------
+  origin_id: Int
+  createdby: Int
+  updatedby: Int
+  curriculum: Discipline @belongsTo(relation: "discipline") #--- discipline_id: Int
+  moderatedby: Int
+  publishedby: Int
+  #------
+  version: Int
+  sort_order: Int
+  new_sort_order: Int
+  duration: Int
+  name: String @rename(attribute: "skill_category_name")
+  decsription: String @rename(attribute: "skill_category_decsription")
+  description_Fr: String
+  description_Ar: String
+  approve_status: skillcategories_approve_status_list
+  publish_status: skillcategories_publish_status_list
+  created_at: DateTime
+  updated_at: DateTime
+  #---
+  skills: [Skill] @hasMany(relation: "skill")
+  #grades: [Grade] @belongsToMany
+  #skillCount: count_of_skill_children
+  #getchildren
+  #havenotdeltedskill
+  #---
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table grades
+# ---------------------------------------------------------------------------------------------------
+
+type Grade {
+  id: ID!
+  name: String @rename(attribute: "grade_name")
+  curriculum_gradelist: Curriculum_gradelist @belongsTo #--- curriculum_gradelist_id: Int
+  createdby: User @belongsTo #-- Int
+  created_at: DateTime
+  updated_at: DateTime
+  #----
+  # exercises: [Exercise] @hasMany(relation: "exerciseset")
+  # skill: Skill @belongsTo
+  # skillCategory: Skillcategory @belongToMany
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table curicula_group   --- Not Used until Now
+# ---------------------------------------------------------------------------------------------------
+
+type Curicula_group {
+  id: ID!
+  name: String
+  country_id: Int
+}
+
+# ---------------------------------------------------------------------------------------------------
+## Table curricula_gradelists
+# ---------------------------------------------------------------------------------------------------
+
+type Curriculum_gradelist {
+  id: ID!
+  name: String @rename(attribute: "curriculum_gradelist_name")
+  description: String
+  country: Country @belongsTo #--- country_id: Int
+  approve_status: approve_status_list
+  createdby: User @belongsTo #-- Int
+  updatedby: User @belongsTo #-- Int
+  created_at: DateTime
+  updated_at: DateTime
+  #-----
+  #discipline:Discipline @hasOne
+  #disciplines: [Discipline] @hasMany
+  grades: [Grade] @hasMany
+}

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Conner\Tagging\Taggable;
 class Curriculum_gradelist extends Model
 {
-    use HasFactory;
+    use HasFactory, Taggable;
 
     protected $table = 'curricula_gradelists';
     protected $primaryKey = 'id';

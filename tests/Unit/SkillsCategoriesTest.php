@@ -11,6 +11,7 @@ use App\Models\Discipline;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Response;
+use App\Models\Grade;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory ;

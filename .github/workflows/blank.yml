@@ -1,0 +1,157 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on: [push, pull_request]
+jobs:
+  lumen-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest']
+        php-versions: ['7.4']
+        phpunit-versions: ['7.0']
+#         phpunit-versions: ['7.0']
+        include:
+          - operating-system: 'ubuntu-latest'
+            php-versions: '7.4'
+    services:
+      mysqldb:
+        image: mysql:5.7
+#         container_name: php_alpine
+        volumes:
+            - dbdata:/var/lib/mysql/
+        ports:
+            - 3306:3306
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: test_database
+#           MYSQL_USER: root
+          MYSQL_PASSWORD: rootpass
+          MYSQL_ROOT_PASSWORD: rootpass
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-php@master
+
+        with:
+          php-version: '7.3'
+      - name: Verify MySQL connection from container 
+        run: | 
+          apt-get update &
+          apt-get install -y mysql-client &
+          mysql --host mysqldb -uroot -prootpass -e "SHOW DATABASES"  ||  mysql --host localhost -uroot -prootpass -e "SHOW DATABASES"   ||  mysql --host 127.0.0.1 -uroot -prootpass -e "SHOW DATABASES"      
+      - name: Copy .env
+        run: |
+          mysql --host 127.0.0.1 -uroot -prootpass -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rootpass';"
+          php -r "file_exists('.env') || copy('.env.github', '.env');" 
+          cp .env.github .env
+      - name: Update Composer
+        run: sudo composer self-update 1.10.15 --no-interaction
+      - name: Run Composer Install
+        run: composer install --no-interaction
+      - name: php clear config
+        run: php artisan config:clear
+      - name: PHP Artisan Key Generate
+        run: php artisan key:generate
+      - name: test docker networks
+        run: docker network ls
+      - name: test docker containers 
+        run: docker container ls -a
+      - name: test docker containers details
+        run: docker inspect $(sudo docker ps -aq)
+      - name: Verify MySQL connection
+        run: |
+          ping mysql -n 3 || ping mariadb -n 3 || ping mysqldb -n 3 || echo "nothing working"
+          echo ${{ job.services.mysql.ports['3306'] }} &
+          sudo apt-get install -y mysql-client &
+          mysql -hlocalhost -P${{ job.services.mysql.ports['3306'] }} -ucishe -pcishe -e "SHOW DATABASES"     & 
+#       - name: PHP Artisan cache clear
+#         run: php artisan key:generate
+      - name: Install PHP dependencies
+        run: php artisan cache:clear      
+      - name: Database Migration
+        run: php artisan migrate 
+      - name: Database seed
+        run: php artisan db:seed      
+      - name: Update Composer
+        run: sudo composer self-update 1.10.15 --no-interaction       
+      - name: php artisan serve
+        run: php artisan serve &
+      - name: run tests
+        env:
+         APP_ENV: testing
+         DB_HOST: 127.0.0.1
+         DB_CONNECTION: mysql
+         DB_DATABASE: test_database
+         DB_USER: root
+         DB_PASSWORD: rootpass
+         DB_PORT: 3306
+        run: |  
+          ls -la
+          cp .env.github .env
+          php artisan config:clear
+          php artisan key:generate
+          vendor/bin/phpunit || composer test
+      - name: Start Chrome Driver
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+      - name: Run Laravel Server
+        run: php artisan serve &   
+      - name: Install Dusk on composer
+        run: composer require --dev laravel/dusk || composer require --dev laravel/dusk:"^4.0"
+      - name: Install Chrome-driver
+        run: |
+           ps aux | grep chrome 
+           ps aux | grep 9515
+           wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
+           unzip chromedriver_linux64.zip
+           chmod +x chromedriver
+           pkill "chrome"
+           ls 
+           cp  -f chromedriver ./vendor/laravel/dusk/bin/chromedriver-linux
+        env:
+               APP_ENV: testing
+               DB_HOST: 127.0.0.1
+               DB_CONNECTION: mysql
+               DB_DATABASE: test_database
+               DB_USER: root
+               DB_PASSWORD: rootpass
+               DB_PORT: 3306          
+      - name: Install Dusk Tests
+        run: php artisan dusk:install
+#       - name: ci-dusk
+#         env:
+#           APP_URL: "http://127.0.0.1:8000"
+#         run: |
+#           chmod -R 755 bin/ci-dusk
+#           bin/ci-dusk
+      - name: Artisan dusk
+        env:
+          APP_URL: "http://127.0.0.1:8000"
+          APP_ENV: testing
+        run: |
+           php artisan serve --host=127.0.0.1 &
+           php artisan dusk
+      - name: php artisan dusk
+        env:
+          APP_URL: "http://127.0.0.1:8000"
+        run: |
+           php artisan dusk       
+           
+      - name: Run Dusk Tests
+
+        env:
+          APP_ENV: testing
+          APP_URL: "http://127.0.0.1:8000"
+          DB_HOST: 127.0.0.1
+          DB_CONNECTION: mysql
+          DB_DATABASE: test_database
+          DB_USER: root
+          DB_PASSWORD: rootpass
+          DB_PORT: 3306 
+        run: 
+#                 php artisan serve  --host=127.0.0.1  > /dev/null 2>&1 &
+#                 curl 127.0.0.1:8000 &
+                ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
+                php artisan dusk

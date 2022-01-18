@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the workflow will run
+# Controls when the workflow will run 2
 on: [push, pull_request]
 jobs:
   lumen-tests:
